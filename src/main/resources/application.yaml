@@ -1,0 +1,24 @@
+spring :
+  devtools :
+    livereload :
+      enabled : true
+  datasource :
+    driverClassName : org.postgresql.Driver
+    url : jdbc:postgresql://localhost:5432/jwt_database
+    username : postgres
+    password : postgres
+
+  jpa :
+    hibernate :
+      ddlAuto : create-drop
+    showSql : true
+    properties :
+      hibernate :
+        format_sql : true
+    databasePlatform : org.hibernate.dialect.PostgreSQLDialect
+
+application :
+  security :
+    jwt :
+      secret_key : d47b583c91c02212015ca898389423902804aec6fe707ddba91c54738d756bf8
+      expiration : 86400000 # a day
