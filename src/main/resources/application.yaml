@@ -10,7 +10,7 @@ spring :
 
   jpa :
     hibernate :
-      ddlAuto : create-drop
+      ddlAuto : update
     showSql : true
     properties :
       hibernate :

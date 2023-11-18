@@ -1,7 +1,6 @@
 package com.aplussoft.demo_jwt.auth;
 
 import com.aplussoft.demo_jwt.config.JWTService;
-import com.aplussoft.demo_jwt.model.Role;
 import com.aplussoft.demo_jwt.model.User;
 import com.aplussoft.demo_jwt.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -9,6 +8,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static com.aplussoft.demo_jwt.model.Role.ADMIN;
+import static com.aplussoft.demo_jwt.model.Role.USER;
 
 @Service
 @AllArgsConstructor
@@ -24,7 +26,7 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(repository.count() == 0 ? ADMIN : USER)
                 .build();
         repository.save(user);
 
